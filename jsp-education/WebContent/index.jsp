@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="CSS/css.css"></link>
 <%
 String section = request.getParameter("section") != null ? request.getParameter("section") : "";
 %>
@@ -20,6 +21,12 @@ String section = request.getParameter("section") != null ? request.getParameter(
 			break;
 		case "select":
 			%><%@include file = "page/select.jsp"%><%
+			break;
+		case "select_sale":
+			%><%@include file = "page/select_sale.jsp"%><%
+			break;
+		case "select_sale_by_shop":
+			%><%@include file = "page/select_sale_by_shop.jsp"%><%
 			break;
 		default :
 			%><%@include file = "static/index.jsp"%><%
