@@ -34,6 +34,8 @@
 				</tr>
 			<%
 		}
+		
+		
 		stmt.close();
 		conn.close();
 	}

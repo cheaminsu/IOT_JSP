@@ -11,7 +11,7 @@ int cost = Integer.parseInt(request.getParameter("cost"));
 try {
 	Class.forName("oracle.jdbc.OracleDriver");
 	Connection conn = DriverManager.getConnection
-		("jdbc:oracle:thin:@//122.128.169.32:1521/xe", "sdh_23", "1234");
+		("jdbc:oracle:thin:@//122.128.169.32:1521/xe", "sdh_20", "1234");
 	
 	Statement stmt = conn.createStatement();
 	
@@ -19,10 +19,14 @@ try {
 	
 	ResultSet rs = stmt.executeQuery(String.format(query, pizza_code, pizza_name, cost ));
 	
+	conn.commit();
+	
 	stmt.close();
 	conn.close();
 }
 catch (Exception e) {
 	e.printStackTrace();
 }
+
+response.sendRedirect("../index.jsp");
 %>
