@@ -34,6 +34,9 @@ String section = request.getParameter("section") != null ? request.getParameter(
 		case "insert_sale":
 			%><%@include file = "page/insert_sale.jsp"%><%
 			break;
+		case "insert_shop":
+			%><%@include file = "page/insert_shop.jsp"%><%
+			break;
 		default :
 			%><%@include file = "static/index.jsp"%><%
 		}

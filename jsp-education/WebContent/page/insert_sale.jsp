@@ -14,6 +14,24 @@ try {
 
 
 <script>
+	function submit_from(){
+		if (document.input_form.sale_code.value === ""){
+			alert("판매 코드를 입력해야 합니다");
+			document.input_form.sale_code.focus();
+		}
+		if (document.input_form.sale_date.value === ""){
+			alert("판매 일자를 입력해야 합니다");
+			document.input_form.sale_date.focus();
+		}
+		if (document.input_form.sale_amount.value === ""){
+			alert("판매 개수를 입력해야 합니다");
+			document.input_form.sale_amount.focus();
+			return;
+		}
+			alert("정상적으로 처리되었습니다!");
+			document.input_form.submit();
+	}
+
 	function reset_form(){
 		document.input_form.reset();
 	}
@@ -68,7 +86,7 @@ try {
 		</tr>
 		<tr> 
 			<td colspan ="2">
-				<input type="submit" value="등록하기">
+				<input type="button" value="등록하기" onclick="submit_from()">
 				<input type="button" value="다시쓰기" onclick="reset_form()">
 			</td>
 		</tr>

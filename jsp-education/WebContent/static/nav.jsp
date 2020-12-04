@@ -8,6 +8,7 @@
 		<li><a href="index.jsp?section=select_sale_by_shop">SELECT_SALE_BY_SHOP</a></li>
 		<li><a href="index.jsp?section=select_sale_by_pizza">select_sale_by_pizza</a></li>
 		<li><a href="index.jsp?section=insert_sale">insert_sale</a></li>
+		<li><a href="index.jsp?section=insert_shop">insert_shop</a></li>
 		<li><a href="index.jsp">홈으로</a></li>
 	</ul>
 </nav>
