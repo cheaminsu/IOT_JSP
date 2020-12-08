@@ -2,36 +2,36 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%
-request.setCharacterEncoding("UTF-8");
-int pro_id = Integer.parseInt(request.getParameter("pro_id"));
-int count = Integer.parseInt(request.getParameter("count"));
-String date = request.getParameter("date");
-int pro_price = 0;
+int product_id = Integer.parseInt(request.getParameter("product_id"));
+int amount = Integer.parseInt(request.getParameter("amount"));
+String date = request.getParameter("puchase_date");
+
 try {
 	Class.forName("oracle.jdbc.OracleDriver");
 	Connection conn = DriverManager.getConnection
-	("jdbc:oracle:thin:@//122.128.169.32:1521/xe", "sdh_23", "1234");
-	Statement stmt1 = conn.createStatement();
-	Statement stmt2 = conn.createStatement();
-	ResultSet pro_price_rs = stmt1.executeQuery("SELECT product.price FROM PRODUCT "+
-			"WHERE product.product_id = "+pro_id+" "+
-			"GROUP BY product.price");
-	if(pro_price_rs.next()){
-		pro_price = pro_price_rs.getInt(1);
-	}
+						("jdbc:oracle:thin:@//122.128.169.32:1521/xe", "sdh_23", "1234");
 	
-	String query = "INSERT INTO SALE(SALE_ID, PRODUCT_ID, PURCHASE_DATE, SALE_PRICE, AMOUNT) VALUES(sale_SEQ.NEXTVAL, %d, '%s', %d, %d)";
 	
-	ResultSet rs = stmt2.executeQuery(String.format(query, pro_id, date, pro_price*count, count));
+	Statement stmt = conn.createStatement();
+	String query = "SELECT PRICE FROM PRODUCT WHERE PRODUCT_ID = "+ product_id;		
+	ResultSet rs = stmt.executeQuery(query);
+	rs.next();
+	int price = rs.getInt(1);
+	rs.close();
+	
+	String insert_query = "INSERT INTO SALE(SALE_ID, PRODUCT_ID, PURCHASE_DATE, SALE_PRICE, AMOUNT) " +
+						  "VALUES(SALES_SEQ.NEXTVAL, %d, '%s', %d, %d)";
+	
+	stmt.executeQuery(String.format(insert_query, product_id, date, price * amount, amount));
 	
 	conn.commit();
 	
-	stmt1.close();
-	stmt2.close();
+	stmt.close();
 	conn.close();
 }
 catch (Exception e) {
 	e.printStackTrace();
 }
-response.sendRedirect("../index.jsp?section=registation_of_sale");
+
+response.sendRedirect("../index.jsp?section=Sales_History");
 %>
