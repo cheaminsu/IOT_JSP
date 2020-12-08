@@ -60,10 +60,7 @@ try {
 				</select>
 			</td>
 		</tr>
-		<tr>
-			<td>판매 일자</td>
-			<td><input type="date" name="sale_date"/></td>
-		</tr>
+		
 		<tr>
 			<td>피자</td>
 			<td>
